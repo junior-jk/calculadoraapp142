@@ -1,10 +1,10 @@
-// Este código suporta Appium Java client >=9
-// https://github.com/appium/java-client
+
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.options.BaseOptions;
 import io.appium.java_client.AppiumBy;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -22,10 +22,10 @@ public class CalculadoraTest {
     public void setUp() {
         var options = new BaseOptions()
             .amend("platformName", "Android")
-            .amend("appium:platformVersion", "13.0")
-            .amend("appium:deviceName", "Samsung_Galaxy_A23_free")
+            .amend("appium:platformVersion", "9.0")
+            .amend("appium:deviceName", "Samsung Galaxy S9 FHD GoogleAPI Emulator")
             .amend("appium:deviceOrientation", "portrait")
-            .amend("appium:app", "storage:Calculator.apk")
+            .amend("appium:app", "storage:filename=Calculator (2).apk")
             .amend("appium:appPackage", "com.google.android.calculator")
             .amend("appium:appActivity", "com.android.calculator2.Calculator")
             .amend("appium:automationName", "UiAutomator2")
@@ -41,12 +41,12 @@ public class CalculadoraTest {
         try {
             driver = new AndroidDriver(getUrl(), options);
         } catch (MalformedURLException e) {
-            throw new RuntimeException("https://oauth-jrkcardoso271-7f465:ca3f3c6d-b2f0-4b67-be1b-a6fd2bbba7a9@ondemand.us-west-1.saucelabs.com:443/wd/hub");
+            throw new RuntimeException("https://josejuniorc:be97a49e-247d-4a59-8202-29c77950cb2d@ondemand.us-west-1.saucelabs.com:443/wd/hub");
         }
     }
 
     private URL getUrl() throws MalformedURLException {
-        return new URL("https://oauth-jrkcardoso271-7f465:ca3f3c6d-b2f0-4b67-be1b-a6fd2bbba7a9@ondemand.us-west-1.saucelabs.com:443/wd/hub");
+        return new URL("https://josejuniorc:be97a49e-247d-4a59-8202-29c77950cb2d@ondemand.us-west-1.saucelabs.com:443/wd/hub");
     }
 
     @Test
@@ -63,6 +63,8 @@ public class CalculadoraTest {
       el4.click();
       var el5 = driver.findElement(AppiumBy.accessibilityId("equals"));
       el5.click();
+      
+      assertEquals("4", driver.findElement(AppiumBy.id("com.google.android.calculator:id/result_final")).getText());
 
       var el6 = driver.findElement(AppiumBy.accessibilityId("clear"));
       el6.click();
@@ -76,6 +78,8 @@ public class CalculadoraTest {
       var el10 = driver.findElement(AppiumBy.accessibilityId("equals"));
       el10.click();
 
+      assertEquals("-3", driver.findElement(AppiumBy.id("com.google.android.calculator:id/result_final")).getText());
+
       var el11 = driver.findElement(AppiumBy.accessibilityId("clear"));
       el11.click();
 
@@ -88,6 +92,8 @@ public class CalculadoraTest {
       var el15 = driver.findElement(AppiumBy.accessibilityId("equals"));
       el15.click();
 
+      assertEquals("45", driver.findElement(AppiumBy.id("com.google.android.calculator:id/result_final")).getText());
+
       var el16 = driver.findElement(AppiumBy.accessibilityId("clear"));
       el16.click();
       
@@ -99,6 +105,8 @@ public class CalculadoraTest {
       el19.click();
       var el20 = driver.findElement(AppiumBy.accessibilityId("equals"));
       el20.click();
+
+      assertEquals("2", driver.findElement(AppiumBy.id("com.google.android.calculator:id/result_final")).getText());
     }
 
     @AfterEach
