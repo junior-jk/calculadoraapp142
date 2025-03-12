@@ -69,16 +69,16 @@ public class CalculadoraTest {
       var el6 = driver.findElement(AppiumBy.accessibilityId("clear"));
       el6.click();
 
-      var el7 = driver.findElement(AppiumBy.accessibilityId("6"));
+      var el7 = driver.findElement(AppiumBy.accessibilityId("9"));
       el7.click();
       var el8 = driver.findElement(AppiumBy.accessibilityId("minus"));
       el8.click();
-      var el9 = driver.findElement(AppiumBy.accessibilityId("9"));
+      var el9 = driver.findElement(AppiumBy.accessibilityId("6"));
       el9.click();
       var el10 = driver.findElement(AppiumBy.accessibilityId("equals"));
       el10.click();
 
-      assertEquals("-3", driver.findElement(AppiumBy.id("com.google.android.calculator:id/result_final")).getText());
+      assertEquals("3", driver.findElement(AppiumBy.id("com.google.android.calculator:id/result_final")).getText());
 
       var el11 = driver.findElement(AppiumBy.accessibilityId("clear"));
       el11.click();
